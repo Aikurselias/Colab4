@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Min AI-Modell (Keras/TFJS)</title>
+    <title>Bio Recensioner AI</title>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
     <style>
         body { 
@@ -43,14 +43,14 @@
 </head>
 <body>
 
-    <h1>Testa min text-AI</h1>
-    <p>Skriv en mening nedan (t.ex. "maten var god" eller "jag är arg").</p>
+    <h1>Bio Recensioner AI</h1>
+    <p>Skriv en biorecension på engelska nedan, till exempel "The movie was good" eller "The film was boring".</p>
     
-    <textarea id="textInput" placeholder="Skriv din text här..."></textarea>
+    <textarea id="textInput" placeholder="Write your movie review in English here..."></textarea>
     <br>
     <button id="predictBtn" onclick="runPrediction()" disabled>⏳ Initierar...</button>
     
-    <div id="result">Resultatet visas här...</div>
+    <div id="result">Resultatet av recensionen visas här...</div>
 
     <div id="debug-box">
         <div class="log-entry"><strong>Debug-logg startad...</strong></div>
@@ -90,7 +90,7 @@
 
                 const btn = document.getElementById('predictBtn');
                 btn.disabled = false;
-                btn.innerText = "Analysera text";
+                btn.innerText = "Analysera recension";
                 
                 // Värm upp modellen med korrekt shape [1, 256]
                 tf.tidy(() => {
@@ -128,10 +128,10 @@
 
         async function runPrediction() {
             const text = document.getElementById('textInput').value;
-            if (!text) { log("Ingen text."); return; }
+            if (!text) { log("Ingen recension."); return; }
 
             try {
-                log(`Analyserar: "${text}"...`);
+                log(`Analyserar recension: "${text}"...`);
                 
                 const inputIndices = tokenize(text);
                 
